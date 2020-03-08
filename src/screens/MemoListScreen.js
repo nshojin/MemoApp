@@ -25,7 +25,7 @@ class MemoListScreen extends React.Component {
         this.setState({ memoList }); // this.setState({ memoList: memoList });と同義
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
       });
   }
 

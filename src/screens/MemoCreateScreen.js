@@ -21,10 +21,10 @@ class MemoCreateScreen extends React.Component {
       createdOn: new Date(),
     })
       .then((docRef) => {
-        console.log(docRef.id);
+        // console.log(docRef.id);
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
       });
   }
 
