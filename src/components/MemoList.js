@@ -8,16 +8,22 @@ class MemoList extends React.Component {
       <TouchableHighlight onPress={() => { this.props.navigation.navigate('MemoDetail'); }}>
         <View style={styles.memoListItem}>
           <Text style={styles.memoTitle}>{item.body}</Text>
-          <Text style={styles.memoDate}>2020/2/14</Text>
+          <Text style={styles.memoDate}>2020/12/12</Text>
         </View>
       </TouchableHighlight>
     );
   }
 
   render() {
+    const list = [];
+    if (typeof this.props.memoList.forEach === 'function') {
+      this.props.memoList.forEach((memo) => {
+        list.push(memo);
+      });
+    }
     return (
       <View style={styles.memoList}>
-        <FlatList data={this.props.memoList} renderItem={this.renderMemo} />
+        <FlatList data={list} renderItem={this.renderMemo.bind(this)} />
       </View>
     );
   }
