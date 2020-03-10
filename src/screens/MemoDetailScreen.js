@@ -2,6 +2,11 @@ import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import CircleButton from '../elements/CircleButton';
 
+const dateString = (date) => {
+  if (date == null) { return ''; }
+  return date.toDate().toISOString().split('T')[0];
+};
+
 class MemoDetailScreen extends React.Component {
   constructor(props) {
     super(props);
@@ -22,17 +27,22 @@ class MemoDetailScreen extends React.Component {
         <View>
           <View style={styles.memoHeader}>
             <View>
-              <Text style={styles.memoHeaderTitle}>{memo.body.substring(0, 10)}</Text>
-              <Text style={styles.memoHeaderDate}>{String(memo.createdOn)}</Text>
+              <Text style={styles.memoHeaderTitle}>{memo.body ? memo.body.substring(0, 10) : ''}</Text>
+              <Text style={styles.memoHeaderDate}>{dateString(memo.createdOn)}</Text>
             </View>
           </View>
         </View>
 
         <View style={styles.memoContent}>
-          <Text>{memo.body}</Text>
+          <Text style={styles.memoBody}>{memo.body}</Text>
         </View>
 
-        <CircleButton name="pencil" color="white" style={styles.editButton} onPress={() => { this.props.navigation.navigate('MemoEdit'); }} />
+        <CircleButton
+          name="pencil"
+          color="white"
+          style={styles.editButton}
+          onPress={() => { this.props.navigation.navigate('MemoEdit', { memo }); }}
+        />
       </View>
     );
   }
@@ -66,6 +76,10 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
     backgroundColor: '#fff',
     flex: 1,
+  },
+  memoBody:{
+    lineHeight: 22,
+    fontSize: 15,
   },
   editButton: {
     top: 75,
