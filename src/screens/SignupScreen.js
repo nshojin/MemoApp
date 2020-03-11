@@ -1,24 +1,29 @@
 import React from 'react';
 import { StyleSheet, View, Text, TextInput, TouchableHighlight } from 'react-native';
 import firebase from 'firebase';
+import { StackActions, NavigationActions } from 'react-navigation';
 
 class SignupScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: '',
-      password: '',
+      email: 'user1@example.com',
+      password: 'password',
     };
   }
 
   handleSubmit() {
     firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
-      .then((user) => {
-        console.log('success', user);
-        this.props.navigation.navigate('Home');
+      .then(() => {
+        const resetAction = StackActions.reset({
+          index: 0,
+          actions: [
+            NavigationActions.navigate({ routeName: 'Home' }),
+          ],
+        });
+        this.props.navigation.dispatch(resetAction);
       })
-      .catch((error) => {
-        console.log('error', error);
+      .catch(() => {
       });
   }
 
@@ -86,6 +91,5 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
 });
-
 
 export default SignupScreen;
