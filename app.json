@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "Blank Template",
-    "slug": "MemoApp",
-    "privacy": "public",
+    "name": "Memot",
+    "slug": "Memot",
+    "privacy": "unlisted",
     "sdkVersion": "36.0.0",
     "platforms": [
       "ios",
@@ -14,7 +14,7 @@
     "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/splash.png",
-      "resizeMode": "contain",
+      "resizeMode": "cover",
       "backgroundColor": "#ffffff"
     },
     "updates": {
@@ -24,7 +24,12 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.shojinblog.memot",
+    },
+    "android": {
+      "package": "com.shojinblog.memot",
+      "versionCode": 1
     }
   }
 }
